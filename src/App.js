@@ -15,7 +15,8 @@ const App = () =>{
             key: alanKey,
             onCommand: ({command, articles})=>{
                 if(command === "newHeadlines"){
-                    setNewsArticles(articles);
+                    //console.log(articles);
+                    setNewsArticles(articles);   
                 }
             }
         })

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect, createRef} from 'react';
 import {Card, CardActions, CardActionArea, CardContent, CardMedia, Button, Typography} from '@material-ui/core';
 import classNames from 'classnames'
 import useStyles from './style.js'; 
@@ -7,11 +7,22 @@ import useStyles from './style.js';
 // <CardActionArea> is the clickable part of the card
 
 const NewsCard = ({article:{description, publishedAt, source, title, url, urlToImage}, i, activeArticle}) => {
-    
     const classes = useStyles();
+    const [elRefs, setElRefs] = useState([]); 
+    const scrollToRef = (ref)=> window.scroll(0, ref.current.offsetTop -50);
+
+    useEffect(()=>{
+        setElRefs((refs)=> Array(20).fill().map((_, j)=> refs[j] || createRef()));
+    }, []);
+
+    useEffect(() =>{
+        if(i===activeArticle && elRefs[activeArticle]){
+            scrollToRef(elRefs[activeArticle]);
+        }
+    }, [i, activeArticle, elRefs]);
     
     return(
-        <Card className={classNames(classes.card, activeArticle === i ? classes.activeCard: null ) }>
+        <Card ref={elRefs[i]} className={classNames(classes.card, activeArticle === i ? classes.activeCard: null ) }>
             <CardActionArea href={url} target='_blank'>
                 <CardMedia className={classes.media} image={urlToImage || 'https://s.france24.com/media/display/d1676b6c-0770-11e9-8595-005056a964fe/w:1280/p:16x9/news_1920x1080.png'}  />
                 <div className={classes.details}>

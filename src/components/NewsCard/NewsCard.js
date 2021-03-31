@@ -11,20 +11,20 @@ const NewsCard = ({article:{description, publishedAt, source, title, url, urlToI
     const classes = useStyles();
     
     return(
-        <Card>
-            <CardActionArea>
+        <Card className={classes.card}>
+            <CardActionArea href={url} target='_blank'>
                 <CardMedia className={classes.media} image={urlToImage || 'https://s.france24.com/media/display/d1676b6c-0770-11e9-8595-005056a964fe/w:1280/p:16x9/news_1920x1080.png'}  />
-                <div>
+                <div className={classes.details}>
                     <Typography variant='body2' color='textSecondary' component='h2'>{(new Date(publishedAt)).toDateString()}</Typography>
                     <Typography variant='body2' color='textSecondary' component='h2'>{source.name}</Typography>
                 </div>
-                <Typography gutterBottom variant='h5'>{title}</Typography>
+                <Typography className={classes.title} gutterBottom variant='h5'>{title}</Typography>
                 <CardContent>
                 <Typography variant='body2' color='textSecondary' component='p'>{description}</Typography>
                 </CardContent>
             </CardActionArea>
-            <CardActions>
-                <button size='small' color='primary'>Learn More</button>
+            <CardActions className={classes.cardActions}>
+                <Button size='small' color='primary'>Learn More</Button>
                 <Typography variant='h5' color='textSecondary'>{i+1}</Typography>
             </CardActions>
         </Card>

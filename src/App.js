@@ -42,7 +42,7 @@ const App = () =>{
     return(
         <div>
             <div className={classes.logoContainer}>
-                <img src="https://voicebot.ai/wp-content/uploads/2019/10/alan.jpg" className={classes.alanLogo} alt="Alan Logo" />
+                <img src="https://minerescue.org/wp-content/uploads/2020/03/Marketplace-Lending-News.jpg" className={classes.alanLogo} alt="Alan Logo" />
             </div>
             <NewsCards articles={newsArticles} activeArticle={activeArticle} />
         </div>
